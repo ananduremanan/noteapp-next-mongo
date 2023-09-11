@@ -1,8 +1,8 @@
 import mongoose from "mongoose";
 
-const connectMongoDB = () => {
+const connectMongoDB = async () => {
   try {
-    mongoose.connect(process.env.MONGODB_URI as string);
+    await mongoose.connect(process.env.MONGODB_URI as string);
     console.log("Connected to MongoDB");
   } catch (error) {
     console.error(error);
