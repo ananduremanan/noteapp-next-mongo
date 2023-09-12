@@ -25,7 +25,7 @@ export default async function NoteList() {
   return (
     <>
       {notes.map((note: any) => (
-        <div className="mt-2">
+        <div className="mt-2" key={note._id}>
           <div className="bg-gray-100 p-2 rounded-lg flex col-2 justify-between">
             <div>
               <h1 className="font-bold">{note.title}</h1>
