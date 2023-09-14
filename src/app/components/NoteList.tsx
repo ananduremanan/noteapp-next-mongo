@@ -10,7 +10,7 @@ export default function NoteList() {
   useEffect(() => {
     async function fetchNotes() {
       try {
-        const res = await fetch("http://127.0.0.1:3000/api/notes", {
+        const res = await fetch(`${process.env.PORT}/api/notes`, {
           cache: "no-store",
         });
 
