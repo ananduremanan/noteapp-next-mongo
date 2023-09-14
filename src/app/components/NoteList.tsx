@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import Link from "next/link";
 import React, { useState, useEffect } from "react";
 import { AiFillEdit } from "react-icons/ai";
@@ -6,6 +6,7 @@ import RemoveBtn from "./RemoveBtn";
 
 export default function NoteList() {
   const [notes, setNotes] = useState([]);
+  const [isDeleted, setIsDeleted] = useState(false);
 
   useEffect(() => {
     async function fetchNotes() {
@@ -26,7 +27,7 @@ export default function NoteList() {
     }
 
     fetchNotes();
-  }, []);
+  }, [isDeleted]);
 
   return (
     <>
@@ -41,7 +42,12 @@ export default function NoteList() {
               <Link href={`/editTopic/${note._id}`}>
                 <AiFillEdit size={20} />
               </Link>
-              <RemoveBtn />
+              <RemoveBtn
+                id={note._id}
+                isDeleted={(value: any) => {
+                  setIsDeleted(value);
+                }}
+              />
             </div>
           </div>
         </div>
