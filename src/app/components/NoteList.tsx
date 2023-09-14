@@ -1,26 +1,32 @@
+'use client'
 import Link from "next/link";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { AiFillEdit } from "react-icons/ai";
 import RemoveBtn from "./RemoveBtn";
 
-const getNotes = async () => {
-  try {
-    const res = await fetch("http://localhost:3000/api/notes", {
-      cache: "no-store",
-    });
+export default function NoteList() {
+  const [notes, setNotes] = useState([]);
 
-    if (!res.ok) {
-      throw new Error("Failed to fetch notes");
+  useEffect(() => {
+    async function fetchNotes() {
+      try {
+        const res = await fetch("http://127.0.0.1:3000/api/notes", {
+          cache: "no-store",
+        });
+
+        if (!res.ok) {
+          throw new Error("Failed to fetch notes");
+        }
+
+        const data = await res.json();
+        setNotes(data.notes);
+      } catch (error) {
+        console.log("Error loading notes", error);
+      }
     }
 
-    return res.json();
-  } catch (error) {
-    console.log("Error loading notes", error);
-  }
-};
-
-export default async function NoteList() {
-  const { notes } = await getNotes();
+    fetchNotes();
+  }, []);
 
   return (
     <>

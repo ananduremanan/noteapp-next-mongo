@@ -19,7 +19,7 @@ export default function AddNotes() {
     }
 
     try {
-      const res = await fetch("http://localhost:3000/api/notes", {
+      const res = await fetch("http://127.0.0.1:3000/api/notes", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
