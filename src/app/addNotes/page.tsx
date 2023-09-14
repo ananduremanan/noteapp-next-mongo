@@ -19,7 +19,7 @@ export default function AddNotes() {
     }
 
     try {
-      const res = await fetch(`${process.env.PORT}/api/notes`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/notes`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
