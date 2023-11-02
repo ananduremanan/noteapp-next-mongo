@@ -11,7 +11,7 @@ export async function POST(request: any) {
 }
 
 export async function GET() {
-  //await connectMongoDB();
+  await connectMongoDB();
   const notes = await Note.find();
   return NextResponse.json({ notes });
 }
